@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { Users, getAllUsers } from './routes/Users.tsx';
 import ErrorPage from './routes/Error.tsx';
 import '@mantine/core/styles.css';
@@ -10,7 +10,7 @@ import Root from './routes/Root.tsx';
 import { PostCommentPage, getPostComments } from './routes/PostComment.tsx';
 import { AlbumPage, getAlbums } from './routes/AlbumPage.tsx';
 import { FavoritesPage } from './routes/FavoritesPage.tsx';
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root></Root>,

@@ -7,16 +7,26 @@ export function FavoritesPage() {
   );
   return (
     <>
-    <Tabs defaultValue="favPost">
+    {
+      favoriteAlbums.state.postData | favoriteAlbums.state.photoData ?
+      <Tabs defaultValue="favPost">
       <Tabs.List>
-        <Tabs.Tab value="favPost">
-        Favorilenmiş Postlar
-        </Tabs.Tab>
-        <Tabs.Tab value="favAlbum">
-        Favorilenmiş Albümler
-        </Tabs.Tab>
+        {
+          favoriteAlbums.state.postData &&
+          <Tabs.Tab value="favPost">
+          Favorilenmiş Postlar
+          </Tabs.Tab>
+        }
+        {
+          favoriteAlbums.state.photoData &&
+          <Tabs.Tab value="favAlbum">
+          Favorilenmiş Albümler
+          </Tabs.Tab>
+        }
       </Tabs.List>
-      <Tabs.Panel value="favPost">
+      {
+        favoriteAlbums.state.postData &&
+        <Tabs.Panel value="favPost">
       <ResultWrapper>
       {favoriteAlbums.state.postData.map((post: any, index: number) => (
           <CardStyle key={index}>
@@ -26,7 +36,10 @@ export function FavoritesPage() {
       ))}
     </ResultWrapper>
       </Tabs.Panel>
-      <Tabs.Panel value="favAlbum">
+      }
+      {
+        favoriteAlbums.state.photoData &&
+        <Tabs.Panel value="favAlbum">
       <ResultWrapper>
         {favoriteAlbums.state.photoData.map((photo: any, index: number) => (
           <AlbumPageCardStyle key={index}>
@@ -36,10 +49,10 @@ export function FavoritesPage() {
         ))}
       </ResultWrapper>
       </Tabs.Panel>
+      }
     </Tabs>
-
-      
-     
+    :"Favorilenmiş post yada albüm bulunamadı!"
+    }
     </>
   );
 }
